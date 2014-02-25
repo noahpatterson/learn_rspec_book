@@ -1,1 +1,24 @@
 <h1>index contacts</h1>
+
+<% @contacts.each do |contact| %>
+  <p>first name: <%= contact.firstname %></p>
+  <p>last name: <%= contact.lastname %></p>
+  <p>email: <%= contact.email %></p>
+  <p>hidden: <%= contact.hidden %></p>
+   <% contact.phones.each do |phone| %>
+    <p><%= phone.phone_type %>: <%= phone.phone %></p>
+  <% end %>
+<%= form_tag hide_contact_path(contact), :method => :patch do %>
+  
+ 
+  <% if contact.hidden %>
+<%= hidden_field_tag :hidden, contact.hidden ? false : true %>
+<%= submit_tag("Un-hide") %>
+  <% else %>
+  <%= hidden_field_tag :hidden, contact.hidden ? false : true %>
+    <%= submit_tag("Hide") %>
+  <% end  %>
+<% end %>
+  
+<p>---------------------------------------------</p>
+<% end %>

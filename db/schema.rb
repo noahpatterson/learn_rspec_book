@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140225120803) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden",     default: true
+    t.boolean  "hidden",     default: false
   end
 
   create_table "phones", force: true do |t|

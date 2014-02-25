@@ -3,6 +3,8 @@ development:
   encoding: utf8
   database: rspec_development
   pool: 5
+  host: localhost
+  username: action
   password:
 
 test:
@@ -10,6 +12,8 @@ test:
   encoding: utf8
   database: rspec_test
   pool: 5
+  host: localhost
+  username: action
   password:
 
 production:
@@ -17,4 +21,6 @@ production:
   encoding: utf8
   database: rspec_production
   pool: 5
+  host: localhost
+  username: action
   password:

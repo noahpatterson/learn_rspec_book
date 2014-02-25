@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-    before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [:show, :edit, :update, :destroy, :hide]
 
     def show
     end
@@ -14,6 +14,9 @@ class ContactsController < ApplicationController
 
     def new
         @contact = Contact.new
+        %w(home office mobile).each do |phone|
+          @contact.phones.build(phone_type: phone)
+        end
     end
 
     def edit
@@ -53,8 +56,8 @@ class ContactsController < ApplicationController
         end
     end
 
-    def hide_contact
-        @contact.hide
+    def hide
+      @contact.update({hidden: params[:hidden]})
         respond_to do |format|
             format.html { redirect_to contacts_url, notice: 'the contact was hidden'}
             format.json { head :no_content }
@@ -68,6 +71,6 @@ class ContactsController < ApplicationController
     end
 
     def contact_params
-        params.require(:contact).permit(:firstname, :lastname, :email, :phones_attributes => [:id, :phone, :phone_type])
+      params.require(:contact).permit(:firstname, :lastname, :email, :phones_attributes => [:id, :phone, :phone_type])
     end
 end

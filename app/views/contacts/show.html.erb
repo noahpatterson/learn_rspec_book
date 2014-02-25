@@ -1,1 +1,10 @@
 <h1>show contacts</h1>
+
+
+  <p>first name: <%= @contact.firstname %></p>
+  <p>last name: <%= @contact.lastname %></p>
+  <p>email: <%= @contact.email %></p>
+  <p>hidden: <%= @contact.hidden %></p>
+  <% @contact.phones.each do |phone| %>
+    <p><%= phone.phone_type %>: <%= phone.phone %></p>
+  <% end %>

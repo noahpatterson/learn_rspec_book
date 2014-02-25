@@ -10,10 +10,6 @@ class Contact < ActiveRecord::Base
         "#{firstname} #{lastname}"
     end
 
-    def hide
-        @hidden = true
-    end
-
     def self.name_search(letter)
         where("firstname LIKE ?", "#{letter}%").order(:firstname)
     end

@@ -164,19 +164,25 @@ describe ContactsController do
     end
   end
 
-  describe "PATCH hide_contact" do
+  describe "PATCH hide" do
     before :each do
         @contact = create(:contact)
     end
 
     it "marks the contact as hidden" do
-        patch :hide_contact, id: @contact
+        patch :hide, id: @contact, hidden: true
         expect(@contact.reload.hidden).to be_true
+    end
+    
+    it "marks the contact as not hidden" do
+      @contact.hidden = true
+      patch :hide, id: @contact, hidden: false
+      expect(@contact.reload.hidden).to be_false
     end
 
     it "redirects to contacts#index" do
-        patch :hide_contact, id: @contact
-        expect(response).to redirect_to contacts_url
+      patch :hide, id: @contact, contact: attributes_for(:contact, hidden: true)
+      expect(response).to redirect_to contacts_url
     end
   end
 end
